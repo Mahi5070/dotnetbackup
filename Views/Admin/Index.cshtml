@@ -1,0 +1,45 @@
+﻿@model List<TruYum_APP.Models.MenuItems>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+<table class="table table-bordered table-haver">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>category</th>
+            <th>name</th>
+            <th>price</th>
+            <th>status</th>
+            <th>free delivery</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ 
+            foreach(var item in Model)
+            {
+                string status = item.IsActive ? "Active" : "InActive";
+                string freedelivery = item.FreeDelivery ? "yes" : "no";
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Category</td>
+                    <td>@item.Name</td>
+                    <td>@item.Price</td>
+                    <td>@status</td>
+                    <td>@freedelivery</td>
+                    <td>
+                        <a href="~/Admin/Edit?id=@item.Id" class="btn btn-warning">Edit</a>
+                        <a href="~/Admin/Delete?id=@item.Id" class="btn btn-danger">Delete</a>
+                    </td> 
+
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+</div>
